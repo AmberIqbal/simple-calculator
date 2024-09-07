@@ -1,10 +1,11 @@
 import React from "react";
 
-function Outputscreen() {
+function Outputscreen(props) {
   return (
     <div style={styles.container}>
       <input
         type="text"
+        value={props.value}
         placeholder=""
         style={{
           width: "700px",

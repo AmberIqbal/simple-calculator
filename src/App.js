@@ -14,14 +14,25 @@ function App() {
   const handleClear = () => {
     setInput("");
   };
-
+  const handleDelete = () => {
+    setInput(input.slice(0, -1));
+  };
+  const handleCalculate = () => {
+    try {
+      setInput(eval(input).toString());
+    } catch (error) {
+      setInput("error");
+    }
+  };
   return (
     <>
       <Heading />
-      <Outputscreen />
+      <Outputscreen value={input} />
       <Buttons
         handleButtonClick={handleButtonClick}
         handleClear={handleClear}
+        handleDelete={handleDelete}
+        handleCalculate={handleCalculate}
       />
     </>
   );
