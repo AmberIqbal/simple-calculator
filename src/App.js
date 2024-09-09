@@ -3,7 +3,8 @@ import "./App.css";
 import Heading from "./components/Heading";
 import Outputscreen from "./components/Outputscreen";
 import Buttons from "./components/Buttons";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { hasFormSubmit } from "@testing-library/user-event/dist/utils";
 
 function App() {
   const [input, setInput] = useState("");
@@ -24,6 +25,28 @@ function App() {
       setInput("error");
     }
   };
+
+  const handleKeyDown = (event) => {
+    const key = event.key;
+    if (/[0-9/*\-+.]/.test(key)) {
+      setInput(input + key);
+    }
+    if (key === "Enter") {
+      handleCalculate();
+    }
+    if (key === "Backspace") {
+      handleDelete();
+    }
+    if (key === "Escape") {
+      handleClear();
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [input]);
   return (
     <>
       <Heading />
