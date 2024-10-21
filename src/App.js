@@ -4,7 +4,6 @@ import Heading from "./components/Heading";
 import Outputscreen from "./components/Outputscreen";
 import Buttons from "./components/Buttons";
 import React, { useState, useEffect } from "react";
-import { hasFormSubmit } from "@testing-library/user-event/dist/utils";
 
 function App() {
   const [input, setInput] = useState("");
